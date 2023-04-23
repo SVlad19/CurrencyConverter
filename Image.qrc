@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/image">
+        <file>Image/free-icon-font-cross-3917759.png</file>
+        <file>Image/free-icon-font-globe-3917538.png</file>
+        <file>Image/free-icon-font-folder-3917537.png</file>
+    </qresource>
+</RCC>
