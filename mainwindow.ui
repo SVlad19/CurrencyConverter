@@ -11,30 +11,60 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Currency Converter</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>100</y>
-      <width>301</width>
-      <height>80</height>
+      <x>30</x>
+      <y>70</y>
+      <width>331</width>
+      <height>141</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QLabel" name="lUSD">
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QLabel" name="lUSD">
+         <property name="font">
+          <font>
+           <family>Book Antiqua</family>
+           <pointsize>16</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>1 USD</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="cbCur">
+         <property name="baseSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QLabel" name="label">
        <property name="font">
         <font>
-         <family>Book Antiqua</family>
-         <pointsize>16</pointsize>
+         <pointsize>28</pointsize>
          <bold>true</bold>
         </font>
        </property>
        <property name="text">
-        <string>1 USD</string>
+        <string>=</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
