@@ -2,13 +2,18 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QNetworkAccessManager>
-#include <QNetworkReply>
-#include <QUrl>
-#include <QJsonDocument>
+//#include <QNetworkAccessManager>
+//#include <QNetworkReply>
+//#include <QUrl>
+//#include <QJsonDocument>
 #include <QJsonObject>
-#include <QJsonArray>
+//#include <QJsonArray>
 #include <QDebug>
+#include <QComboBox>
+#include <QPalette>
+#include <QPixmap>
+
+class CurrencyInfo;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -21,16 +26,20 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void FillComboBox();
+    void FillValue(QString cur);
+
 
 private slots:
     void on_actionQuit_triggered();
-
+    void changedElement(const QString&);
+    void takeInfo();
 private:
-    QNetworkAccessManager* manager = nullptr;
-    QNetworkReply* reply;
-    QByteArray response;
-    QJsonDocument jsonDoc;
+
     QJsonObject jsonObj;
+    QComboBox* box;
+    CurrencyInfo* currency;
+    QStringList curInfo;
     Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H
