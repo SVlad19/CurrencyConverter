@@ -2,12 +2,14 @@
 #define CURRENCYINFO_H
 
 #include <QObject>
+#include <QDebug>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QUrl>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
+#include <QMessageBox>
 
 class CurrencyInfo :public QObject
 {
@@ -15,7 +17,7 @@ class CurrencyInfo :public QObject
 public:
     CurrencyInfo() = delete;
     explicit CurrencyInfo(QUrl _url);
-
+    ~CurrencyInfo();
     QStringList takeCurrency()const;
     QJsonArray getArray()const;
 
@@ -26,8 +28,7 @@ private slots:
      void takeInfo();
 
 private:
-     QNetworkAccessManager* manager;
-     QObject* obj;
+     std::unique_ptr<QNetworkAccessManager> manager;
      QNetworkReply* reply;
      QByteArray response;
      QJsonDocument jsonDoc;

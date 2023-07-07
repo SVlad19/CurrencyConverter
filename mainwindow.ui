@@ -165,18 +165,11 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionSave"/>
+    <addaction name="actionClear_file"/>
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
-   <widget class="QMenu" name="menuSettings">
-    <property name="title">
-     <string>Settings</string>
-    </property>
-    <addaction name="actionLanguage"/>
-   </widget>
    <addaction name="menuFile"/>
-   <addaction name="menuSettings"/>
   </widget>
   <action name="actionQuit">
    <property name="icon">
@@ -190,28 +183,13 @@
     <string>Ctrl+Q</string>
    </property>
   </action>
-  <action name="actionSave">
+  <action name="actionClear_file">
    <property name="icon">
     <iconset resource="Image.qrc">
      <normaloff>:/image/Image/free-icon-font-folder-3917537.png</normaloff>:/image/Image/free-icon-font-folder-3917537.png</iconset>
    </property>
    <property name="text">
-    <string>Save</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+S</string>
-   </property>
-  </action>
-  <action name="actionLanguage">
-   <property name="icon">
-    <iconset resource="Image.qrc">
-     <normaloff>:/image/Image/free-icon-font-globe-3917538.png</normaloff>:/image/Image/free-icon-font-globe-3917538.png</iconset>
-   </property>
-   <property name="text">
-    <string>Language</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+L</string>
+    <string>Clear file</string>
    </property>
   </action>
  </widget>

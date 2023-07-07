@@ -1,10 +1,15 @@
 #include "currencyinfo.h"
 
 CurrencyInfo::CurrencyInfo(QUrl url){
-    manager = new QNetworkAccessManager(this);
+    manager = std::make_unique<QNetworkAccessManager>(this);
     reply = manager->get(QNetworkRequest(url));
     connect(reply,SIGNAL(finished()),this, SLOT(takeInfo()));
 
+}
+
+CurrencyInfo::~CurrencyInfo()
+{
+    qDebug() << "CurrencyInfo::~CurrencyInfo()";
 }
 
 QStringList CurrencyInfo::takeCurrency() const
@@ -26,7 +31,7 @@ void CurrencyInfo::takeInfo()
            if(jsonDoc.isArray()){
                array = jsonDoc.array();
 
-               foreach(const QJsonValue& val,array){
+               for(auto val: array){
                    if(val.isObject()){
                        jsonObj = val.toObject();
                        curList.push_back(jsonObj.value("ccy").toString());
@@ -35,6 +40,7 @@ void CurrencyInfo::takeInfo()
            }
          }else{
             qDebug()<<"Error: "<<reply->errorString();
+            QMessageBox::information(nullptr,"Error",reply->errorString());
          }
            reply->deleteLater();
            emit info();

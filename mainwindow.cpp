@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "currencyinfo.h"
+#include "fileinfo.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -18,14 +19,15 @@ MainWindow::MainWindow(QWidget *parent)
     ui->centralwidget->setPalette(palette);
     ui->centralwidget->show();
 
-    currency = new CurrencyInfo(QUrl("https://api.privatbank.ua/p24api/pubinfo"));
+    currency = std::make_unique<CurrencyInfo>(QUrl("https://api.privatbank.ua/p24api/pubinfo"));
+    fileinfo = std::make_unique<FileInfo>();
 
-    connect(currency,SIGNAL(info()),this,SLOT(takeInfo()));
+    connect(currency.get(),SIGNAL(info()),this,SLOT(takeInfo()));
+    connect(this,SIGNAL(info(const CurrencyInfo&)),fileinfo.get(),SLOT(WriteToFile(const CurrencyInfo&)));
 }
 
 MainWindow::~MainWindow()
 {
-    delete currency;
     delete ui;
 }
 
@@ -61,6 +63,7 @@ void MainWindow::takeInfo()
     curInfo = currency->takeCurrency();
     FillValue(curInfo[0]);
     FillComboBox();
+    emit info(*currency);
 }
 
 void MainWindow::changedElement(const QString & element)
@@ -71,5 +74,11 @@ void MainWindow::changedElement(const QString & element)
 void MainWindow::on_actionQuit_triggered()
 {
     QApplication::quit();
+}
+
+
+void MainWindow::on_actionClear_file_triggered()
+{
+    fileinfo->ClearFile();
 }
 

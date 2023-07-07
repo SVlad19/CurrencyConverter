@@ -10,11 +10,13 @@ CONFIG += c++17
 
 SOURCES += \
     currencyinfo.cpp \
+    fileinfo.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     currencyinfo.h \
+    fileinfo.h \
     mainwindow.h
 
 FORMS += \
